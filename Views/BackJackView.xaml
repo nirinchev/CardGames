@@ -1,0 +1,85 @@
+﻿<UserControl x:Class="CardGames.Views.BlackJackView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+			 xmlns:local="clr-namespace:CardGames.ViewModels"
+             d:DesignHeight="280" d:DesignWidth="849">
+	<UserControl.DataContext>
+		<local:BlackJackViewModel></local:BlackJackViewModel>
+	</UserControl.DataContext>
+	<Grid Background="#FFFFFF">
+		<Grid.RowDefinitions>
+
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="*"/>
+
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="150"/>
+		</Grid.ColumnDefinitions>
+
+		<StackPanel Orientation="Horizontal" Name="PlayerPlayed" HorizontalAlignment="Center" Grid.Row="1">
+			<ItemsControl  ItemsSource="{Binding Path=Human.Deck.Cards}">
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+							<ContentControl 
+								Content="{Binding Path=Image}" 
+                                             Margin="10" />
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+				<ItemsControl.ItemsPanel>
+					<ItemsPanelTemplate>
+						<StackPanel Orientation="Horizontal"/>
+					</ItemsPanelTemplate>
+				</ItemsControl.ItemsPanel>
+			</ItemsControl>
+		</StackPanel>
+
+		<StackPanel Orientation="Horizontal" Name="PlayerCardsPanel" HorizontalAlignment="Center" Grid.Row="0">
+			<!--<ListBox ItemsSource="{Binding Computer.CardList}"
+					 SelectedItem=""
+					 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+					 ScrollViewer.VerticalScrollBarVisibility="Disabled"
+					 BorderThickness="0">
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<Image Source="{Binding Uri}" />
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+				<ListBox.ItemsPanel>
+					<ItemsPanelTemplate>
+						<WrapPanel IsItemsHost="True" Height="{Binding ElementName=PlayerCardsPanel, Path=ActualHeight}"/>
+					</ItemsPanelTemplate>
+				</ListBox.ItemsPanel>
+			</ListBox>-->
+			<ItemsControl  ItemsSource="{Binding Path=Computer.Deck.Cards}">
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<ContentControl 
+								Content="{Binding Path=Image}" 
+                                             Width="100" 
+											Height="100" />
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+				<ItemsControl.ItemsPanel>
+					<ItemsPanelTemplate>
+						<StackPanel Orientation="Horizontal"/>
+					</ItemsPanelTemplate>
+				</ItemsControl.ItemsPanel>
+			</ItemsControl>
+		</StackPanel>
+
+		<Button Content="Deal" Command="{Binding DealCommand}" IsEnabled="{Binding CanDeal}" Grid.Column="1" HorizontalAlignment="Left" Margin="35,41,0,0" Grid.Row="1" VerticalAlignment="Top" Width="76"/>
+		<Button Content="Hit" Command="{Binding ClickCommand}" IsEnabled="{Binding CanHit}"  Grid.Column="1" HorizontalAlignment="Left" Margin="35,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="76"/>
+		<Label Grid.Row="0" Grid.Column="1" Content="{Binding BlackJackGameManager.Computer.Score}" Margin="108,48,0,41" />
+		<Label Grid.Row="0" Grid.Column="1" Content="{Binding BlackJackGameManager.Human.Score}" Margin="108,95,0,0" />
+		<Button Command="{Binding StandCommand}" Content="Stand" Grid.Column="1" HorizontalAlignment="Left" Margin="35,66,0,0" Grid.Row="1" VerticalAlignment="Top" Width="76" RenderTransformOrigin="0.052,-0.019"/>
+		<Label Content="Player Score" Grid.Column="1" HorizontalAlignment="Left" Margin="0,95,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.263,0.115"/>
+		<Label Content="Computer Score" Grid.Column="1" HorizontalAlignment="Left" Margin="0,48,0,0" VerticalAlignment="Top"/>
+		<Label Content="Your Money" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.237,-0.231"/>
+		<Label  Grid.Column="1" HorizontalAlignment="Left" Margin="108,0,0,0" VerticalAlignment="Top" Width="42" Height="43" Content="{Binding BlackJackGameManager.Human.Money}"/>
+	</Grid>
+</UserControl>
