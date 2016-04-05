@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using Utils;
 
 namespace CardGames
 {
+	// TODO: this is a really bad name :)
 	class Infos
 	{
-		public static IDictionary<string, string> CardMapping = new Dictionary<string, string>() { 
+		// TODO: This is rather ugly and not really needed - just rename your assets to {Suits}{1-14} like Clubs1, Clubs12, etc. and construct the path in runtime
+		public static IDictionary<string, string> CardMapping = new Dictionary<string, string>() {
 			{Suits.Clubs.ToString() +   Values.Ace.ToString(), "c1"},
 			{Suits.Clubs.ToString() +   Values.Two.ToString(), "c2"},
 			{Suits.Clubs.ToString() + Values.Three.ToString(), "c3"},

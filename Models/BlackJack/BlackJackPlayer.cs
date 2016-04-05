@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Utils;
+﻿using Utils;
 
 namespace CardGames.Models.BlackJack
 {
-	class BlackJackPlayer: CardPlayer
+	class BlackJackPlayer : CardPlayer
 	{
 		private int score = 0;
 
@@ -26,13 +21,11 @@ namespace CardGames.Models.BlackJack
 
 		public BlackJackPlayer()
 		{
-			
 			Money = 100;
 		}
 
-        public override void TakeCard(Card card)
-        {
-
+		public override void TakeCard(Card card)
+		{
 			if (card.Value == Values.Ace)
 			{
 				if (score + BlackJackCardPoints.CardPoints[card.ToString()] > 21)
@@ -43,12 +36,13 @@ namespace CardGames.Models.BlackJack
 				}
 			}
 			Score = score + BlackJackCardPoints.CardPoints[card.ToString()];
-            base.TakeCard(card);
-        }
+			base.TakeCard(card);
+		}
 
-		public void GiveCards(){
+		public void GiveCards()
+		{
 			Score = 0;
-			Deck = new BlackJackDeck(new Card[]{});
+			Deck = new BlackJackDeck(new Card[] { });
 		}
 	}
 }

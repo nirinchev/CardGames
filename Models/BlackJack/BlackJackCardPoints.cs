@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Utils;
 
 namespace CardGames.Models.BlackJack
 {
-    class BlackJackCardPoints
-    {
-        public static IDictionary<string, int> CardPoints = new Dictionary<string, int>() { 
+	class BlackJackCardPoints
+	{
+		public static IDictionary<string, int> CardPoints = new Dictionary<string, int>
+		{
+			// TODO: don't do this :)
+			// It seems the Suit doesn't matter, I'd suggest simplified Dictionary<Values, int>
 			{Suits.Clubs.ToString() +   Values.Ace.ToString(), 11},
 			{Suits.Clubs.ToString() +   Values.Two.ToString(), 2 },
 			{Suits.Clubs.ToString() + Values.Three.ToString(), 3 },
@@ -62,7 +61,6 @@ namespace CardGames.Models.BlackJack
 			{Suits.Spades.ToString() +  Values.Jack.ToString(), 10},
 			{Suits.Spades.ToString() + Values.Queen.ToString(), 10},
 			{Suits.Spades.ToString() +  Values.King.ToString(), 10},
-
 		};
-    }
+	}
 }

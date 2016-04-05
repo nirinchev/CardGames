@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using CardGames.Models;
-using Utils;
 using System.Collections.ObjectModel;
+using Utils;
 
 namespace CardGames.Models
 {
 	class Deck
 	{
-		private Random random = new Random();
+		private readonly Random random = new Random();
 		//public List<Card> cards = new List<Card>();
-		public ObservableCollection<Card> Cards { get;set; }
+		public ObservableCollection<Card> Cards { get; private set; }
 
+		// TODO: call the other constructor instead of duplicating the logic
 		public Deck()
 		{
 			Cards = new ObservableCollection<Card>();
@@ -101,10 +101,10 @@ namespace CardGames.Models
 			Cards = shuffledDeck;
 		}
 
-	    public virtual void AddCard(Card card)
-	    {
-	        Cards.Add(card);
-	    }
+		public virtual void AddCard(Card card)
+		{
+			Cards.Add(card);
+		}
 
 		public int Count()
 		{

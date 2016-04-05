@@ -1,20 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CardGames.Models;
-using System.ComponentModel;
-using System.Collections.ObjectModel;
-using System.Windows.Controls;
-using Prism.Mvvm;
+﻿using Prism.Mvvm;
 
 namespace CardGames.Models
 {
+	// This is a view model, should be renamed to have a ViewModel suffix. Also, since it's an abstract class, should be CardPlayerViewModelBase
 	abstract class CardPlayer : BindableBase
-    {
-
-		protected Deck deck = new Deck(new Card[] { });
+	{
+		protected Deck deck = new Deck(new Card[0]);
 
 		public Deck Deck
 		{
@@ -22,10 +13,9 @@ namespace CardGames.Models
 			set { SetProperty(ref this.deck, value); }
 		}
 
-        
-        public virtual void TakeCard(Card card)
-        {
+		public virtual void TakeCard(Card card)
+		{
 			Deck.AddCard(card);
-        }
-    }
+		}
+	}
 }

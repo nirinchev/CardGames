@@ -1,16 +1,11 @@
-﻿using System.Windows.Controls;
-using CardGames.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CardGames.Models;
 
 namespace CardGames
 {
-    interface IBlackJackPlayer
-    {
+	interface IBlackJackPlayer
+	{
 		int Score { get; }
-        void TakeCard(Card card);
-    }
+
+		void TakeCard(Card card);
+	}
 }

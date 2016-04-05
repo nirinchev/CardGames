@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using Utils;
@@ -14,6 +10,7 @@ namespace CardGames.Models
 		private Values value;
 		private Suits suit;
 
+		// TODO: convert to c# 6 getter only property
 		public Values Value
 		{
 			get
@@ -22,21 +19,22 @@ namespace CardGames.Models
 			}
 		}
 
-        public Suits Suit
-        {
-            get
-            {
-                return suit;
-            }
-        }
+		public Suits Suit
+		{
+			get
+			{
+				return suit;
+			}
+		}
 
-		public Uri Uri{get;set;}
+		public Uri Uri { get; set; }
 
-		public Image Image{get;set;}
+		// TODO: this is breaking MVVM. You are exposing view-related properties in your model
+		public Image Image { get; set; }
 
 		public Image BackImage { get; set; }
 
-	    public Card(Values value, Suits suit)
+		public Card(Values value, Suits suit)
 		{
 			this.value = value;
 			this.suit = suit;
@@ -52,7 +50,5 @@ namespace CardGames.Models
 		{
 			return this.suit.ToString() + this.value.ToString();
 		}
-
-
 	}
 }

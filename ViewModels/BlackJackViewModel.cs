@@ -1,30 +1,16 @@
-﻿using CardGames.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Media.Imaging;
-
-
-using CardGames.Views;
-using Utils;
-using Prism.Mvvm;
-using CardGames.Models.BlackJack;
 using CardGames.Managers;
-using System.ComponentModel;
-using System.Collections.ObjectModel;
-using System.Windows.Media;
+using CardGames.Models.BlackJack;
 using Prism.Commands;
+using Prism.Mvvm;
 
 namespace CardGames.ViewModels
 {
 	class BlackJackViewModel : BindableBase
-    {
-        public DelegateCommand ClickCommand { get; set; }
+	{
+		// TODO: this is a bad name :)
+		public DelegateCommand ClickCommand { get; set; }
 		public DelegateCommand DealCommand { get; set; }
 		public DelegateCommand StandCommand { get; set; }
 
@@ -44,23 +30,27 @@ namespace CardGames.ViewModels
 			set { SetProperty(ref this.canHit, value); }
 		}
 
-        public BlackJackGameManager BlackJackGameManager { get; set; }
+		public BlackJackGameManager BlackJackGameManager { get; set; }
 
-        public ObservableCollection<Image> Images { get; set; }
-		
-        public BlackJackViewModel()
-        {
+		// TODO: this is breaking MVVM :)
+		public ObservableCollection<Image> Images { get; set; }
+
+		public BlackJackViewModel()
+		{
 			Human = new BlackJackHumanPlayer();
 			Computer = new BlackJackComputerPlayer();
-            BlackJackGameManager = new BlackJackGameManager(Human, Computer);
+			BlackJackGameManager = new BlackJackGameManager(Human, Computer);
 
+			// TODO: why is there no CanExecute for those?
 			ClickCommand = new DelegateCommand(Hit);
 			DealCommand = new DelegateCommand(Deal);
-			StandCommand = new DelegateCommand(Stand, CanStand).ObservesProperty(()=>CanHit);
-        }
+			StandCommand = new DelegateCommand(Stand, CanStand).ObservesProperty(() => CanHit);
+		}
 
+		// TODO: use lambda, you don't need a named method for that.
 		private bool CanStand()
 		{
+			// TODO: rewrite as return CanHit :)
 			if (CanHit)
 			{
 				return true;
@@ -88,5 +78,5 @@ namespace CardGames.ViewModels
 			CanDeal = BlackJackGameManager.CanDeal;
 			CanHit = BlackJackGameManager.CanHit;
 		}
-    }
+	}
 }

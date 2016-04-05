@@ -1,30 +1,21 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Threading;
+using System.Windows;
+using System.Windows.Threading;
 using CardGames.Models;
 using CardGames.Models.BlackJack;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Threading;
 
 namespace CardGames.Managers
 {
-	class BlackJackGameManager 
+	class BlackJackGameManager
 	{
-		public BlackJackHumanPlayer Human{ get; private set; }
-		public BlackJackComputerPlayer Computer{ get; private set; }
+		public BlackJackHumanPlayer Human { get; private set; }
+		public BlackJackComputerPlayer Computer { get; private set; }
 		public bool CanDeal { get; set; }
 		public bool CanHit { get; set; }
 		private BlackJackDeck deck = new BlackJackDeck();
 
-	    public BlackJackGameManager(BlackJackHumanPlayer human, BlackJackComputerPlayer computer)
+		public BlackJackGameManager(BlackJackHumanPlayer human, BlackJackComputerPlayer computer)
 		{
 			Computer = computer;
 			Human = human;
@@ -35,23 +26,25 @@ namespace CardGames.Managers
 		public Card Hit()
 		{
 			var hitted = Hit(Human);
-			if(Human.Score > 21){
+			if (Human.Score > 21)
+			{
 				GameWinner("You lose");
 			}
 			else if (Human.Score == 21)
 			{
 				GameWinner("You win");
 			}
-		    return hitted;
+			return hitted;
 		}
 
 		private Card Hit(IBlackJackPlayer player)
 		{
 			Card CardTaken = deck.Deal();
 			player.TakeCard(CardTaken);
-		    return CardTaken;
+			return CardTaken;
 		}
 
+		// TODO: Method names should be verbs in present tense
 		private void GameEnded()
 		{
 			CanDeal = true;
@@ -67,6 +60,7 @@ namespace CardGames.Managers
 					Thread.Sleep(900);
 					var cardTaken = Hit(Computer);
 
+					// TODO: is this needed?
 					Application.Current.Dispatcher.Invoke(DispatcherPriority.Background,
 														  new Action(delegate { }));
 
@@ -78,7 +72,8 @@ namespace CardGames.Managers
 				}
 				else if (Computer.Score == Human.Score)
 				{
-					if(Human.Score > 17){
+					if (Human.Score > 17)
+					{
 						GameWinner("Draw");
 						break;
 					}
@@ -91,15 +86,18 @@ namespace CardGames.Managers
 			}
 		}
 
-		private void GameWinner(string winnerText){
+		// This should be a ver
+		private void GameWinner(string winnerText)
+		{
 			if (winnerText == "Draw")
 			{
 				Human.Money += 5;
 			}
-			else if (winnerText == "You win") 
+			else if (winnerText == "You win")
 			{
 				Human.Money += 10;
 			}
+			// This is breaking MVVM - it's view related logic. You will need something like DialogService to handle it
 			MessageBox.Show(winnerText);
 			GameEnded();
 		}
