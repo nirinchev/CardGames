@@ -8,5 +8,6 @@ namespace CardGames.Models.Santase
 {
     class SantasePlayer: CardPlayer
     {
+		//give more cards!!!
     }
 }
