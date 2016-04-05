@@ -81,6 +81,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Managers\BlackJackGameManager.cs" />
+    <Compile Include="Managers\SantaseGameManager.cs" />
     <Compile Include="Models\BlackJack\BlackJackComputerPlayer.cs" />
     <Compile Include="Models\BlackJack\BlackJackPlayer.cs" />
     <Compile Include="Models\BlackJack\IBlackJackPlayer.cs" />
@@ -90,6 +91,13 @@
     <Compile Include="Models\CardPlayer.cs" />
     <Compile Include="Models\Deck.cs" />
     <Compile Include="Models\BlackJack\BlackJackCardPoints.cs" />
+    <Compile Include="Models\PropertyHolder.cs" />
+    <Compile Include="Models\Santase\GameField.cs" />
+    <Compile Include="Models\Santase\SantaseCardPoints.cs" />
+    <Compile Include="Models\Santase\SantaseComputerPlayer.cs" />
+    <Compile Include="Models\Santase\SantaseDeck.cs" />
+    <Compile Include="Models\Santase\SantaseHumanPlayer.cs" />
+    <Compile Include="Models\Santase\ISantasePlayer.cs" />
     <Compile Include="Models\Santase\SantasePlayer.cs" />
     <Compile Include="Utils\Suits.cs" />
     <Compile Include="Utils\Utils.cs" />
